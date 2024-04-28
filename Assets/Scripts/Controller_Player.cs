@@ -35,7 +35,10 @@ public class Controller_Player : MonoBehaviour
     private List<Controller_Option> options;
     
     public static Controller_Player _Player;
-    
+
+    private Vector3 initialPosition; // Nueva variable para almacenar la posición inicial del jugador
+
+
     private void Awake()
     {
         if (_Player == null)
@@ -60,8 +63,14 @@ public class Controller_Player : MonoBehaviour
 
     private void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         render = GetComponent<Renderer>();
+        // Inicializar la posición inicial del jugador
+
+        initialPosition = transform.position;
+        // Restablecer todas las variables de estado del jugador aquí, si es necesario
+
         powerUpCount = 0;
         doubleShoot = false;
         missiles = false;
@@ -74,6 +83,12 @@ public class Controller_Player : MonoBehaviour
     {
         CheckForceField();
         ActionInput();
+    }
+
+    // Método para reiniciar el estado del jugador
+    public void ResetPlayer()
+    {
+        transform.position = initialPosition; // Restablecer la posición del jugador a la posición inicial
     }
 
     private void CheckForceField()

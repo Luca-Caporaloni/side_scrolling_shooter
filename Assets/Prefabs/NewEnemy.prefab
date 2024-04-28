@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4060843512498849110}
   - component: {fileID: 4060843512498849105}
   - component: {fileID: 4060843512498849109}
-  - component: {fileID: -5932391172264576146}
+  - component: {fileID: -3021619124371157863}
   m_Layer: 12
-  m_Name: ZigzagEnemy
+  m_Name: NewEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.32, y: 6.22, z: -0.359375}
-  m_LocalScale: {x: 2.493065, y: 2.493065, z: 0.036872435}
+  m_LocalScale: {x: 2.493065, y: 2.493065, z: 2.493065}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0c5d90f7cad72f74c85e1a5f1399e114, type: 2}
+  - {fileID: 2100000, guid: 0450d29ce66145c4395dc7d46b9d0966, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,7 +105,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 67.07}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4060843512498849109
 Rigidbody:
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &-5932391172264576146
+--- !u!114 &-3021619124371157863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,12 +143,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4060843512498849104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce91520e46048bf4d94b3822377ada76, type: 3}
+  m_Script: {fileID: 11500000, guid: 56de3ba5d1ea26a4e817c8b159aedd9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 10
-  xLimit: -30
+  enemySpeed: 0
+  xLimit: 0
   enemyProjectile: {fileID: 2708450068394556265, guid: 79ea6a2f480704548a3396a2715e551b,
     type: 3}
   powerUp: {fileID: 4517337200887749597, guid: 6e4570f9333e45646a8605a1c5ac603e, type: 3}
-  goingUp: 0
+  movementSpeed: 5
+  rotationSpeed: 90
+  shootCooldown: 2
+  projectilePrefab: {fileID: 8500176173504030484, guid: 5f67b379e305235498b5f90903e446a8,
+    type: 3}
