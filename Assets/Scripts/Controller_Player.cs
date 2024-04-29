@@ -89,6 +89,8 @@ public class Controller_Player : MonoBehaviour
     // Método para reiniciar el estado del jugador
     public void ResetPlayer()
     {
+        SceneManager.LoadScene(1);
+
         transform.position = initialPosition; // Restablecer la posición del jugador a la posición inicial
         rb.velocity = Vector3.zero; // Detener cualquier movimiento del jugador
         powerUpCount = 0; // Restablecer el contador de power-ups
@@ -108,18 +110,13 @@ public class Controller_Player : MonoBehaviour
         }
         options.Clear(); // Limpiar la lista de opciones
         render.material.color = Color.red; // Restablecer el color del jugador
+
+        // Aquí restableces cualquier efecto de los power-ups
+        // Por ejemplo:
+        speed = 10; // Restablecer la velocidad del jugador a su valor predeterminado
+                   // Restablecer otros efectos de power-ups aquí...
     }
 
-    private void CargarEscenaCarga()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(1); // Carga la escena de carga
-                                                   // Reinicia el jugador
-        if (Controller_Player._Player != null)
-        {
-            Controller_Player._Player.ResetPlayer();
-        }
-    }
 
     private void CheckForceField()
     {
@@ -286,7 +283,7 @@ public class Controller_Player : MonoBehaviour
             }
             else
             {
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
                 //Destroy(this.gameObject);
                 Controller_Hud.gameOver = true;
             }
