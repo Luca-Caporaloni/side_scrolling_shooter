@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class Restart : MonoBehaviour
 {
+    // Nombre de la escena de carga
+    public string nombreEscenaCarga = "Cargando...";
+
     void Update()
     {
         GetInput();
@@ -12,15 +15,13 @@ public class Restart : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            CargarEscenaCarga();
         }
     }
 
-    // Añadimos este método para permitir reiniciar desde otras partes del código si es necesario
-    public void RestartGame()
+    private void CargarEscenaCarga()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(nombreEscenaCarga); // Carga la escena de carga
     }
 }

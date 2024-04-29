@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Controller_Player : MonoBehaviour
 {
@@ -89,6 +90,35 @@ public class Controller_Player : MonoBehaviour
     public void ResetPlayer()
     {
         transform.position = initialPosition; // Restablecer la posición del jugador a la posición inicial
+        rb.velocity = Vector3.zero; // Detener cualquier movimiento del jugador
+        powerUpCount = 0; // Restablecer el contador de power-ups
+        doubleShoot = false; // Restablecer el estado de doble disparo
+        missiles = false; // Restablecer el estado de misiles
+        missileCount = 0; // Restablecer el contador de misiles
+        shootingCount = 0; // Restablecer el contador de disparos
+        forceField = false; // Restablecer el estado del campo de fuerza
+        laserOn = false; // Restablecer el estado del láser
+        if (laser != null)
+        {
+            Destroy(laser); // Destruir el láser si está activo
+        }
+        foreach (var option in options)
+        {
+            Destroy(option.gameObject); // Destruir todas las opciones activas
+        }
+        options.Clear(); // Limpiar la lista de opciones
+        render.material.color = Color.red; // Restablecer el color del jugador
+    }
+
+    private void CargarEscenaCarga()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1); // Carga la escena de carga
+                                                   // Reinicia el jugador
+        if (Controller_Player._Player != null)
+        {
+            Controller_Player._Player.ResetPlayer();
+        }
     }
 
     private void CheckForceField()
@@ -112,7 +142,7 @@ public class Controller_Player : MonoBehaviour
     {
         missileCount -= Time.deltaTime;
         shootingCount -= Time.deltaTime;
-        if (Input.GetKey(KeyCode.O) && shootingCount<0)
+        if (Input.GetKey(KeyCode.Mouse0) && shootingCount<0)
         {
             if (OnShooting!=null)
             {
@@ -157,7 +187,7 @@ public class Controller_Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             if (powerUpCount == 1)
             {
